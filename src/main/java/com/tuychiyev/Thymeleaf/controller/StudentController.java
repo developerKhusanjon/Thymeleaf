@@ -29,7 +29,7 @@ public class StudentController {
         return "table";
     }
 
-    @RequestMapping("/get")
+    @RequestMapping("get")
     @ResponseBody
     public Optional<Student> getStudent(Integer id){
         return studentService.getOne(id);
