@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List of students</title>
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.css">
+</head>
+<body>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add new Student</button>
+    <table class="table table-striped">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Department</td>
+            <td>UpdatedBy</td>
+            <td>UpdatedOn</td>
+        </tr>
+        <tr th:each="student:${students}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.department}"></td>
+            <td th:text="${student.updatedBy}"></td>
+            <td th:text="${student.updatedOn}"></td>
+        </tr>
+    </table>
+
+<form>
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Id:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <input type="text" class="form-control" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Department:</label>
+              <input type="text" class="form-control" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Updated By:</label>
+              <input type="text" class="form-control" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Updated On:</label>
+              <input type="text" class="form-control" id="recipient-name">
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+</body>
+</html>

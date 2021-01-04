@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of students</title>
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.css">
+    <script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+</head>
+<body>
+<h2>List of Students</h2>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Student</button>
+<table class="table table-striped">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Department</td>
+        <td>UpdatedBy</td>
+        <td>UpdatedOn</td>
+        <td>Edit</td>
+    </tr>
+    <tr th:each="student:${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.department}"></td>
+        <td th:text="${student.updatedBy}"></td>
+        <td th:text="${student.updatedOn}"></td>
+        <td><a class="btn btn-warning">Edit</a></td>
+    </tr>
+</table>
+
+<!--<script>-->
+<!--    $(document).ready(function (){-->
+<!--        $(".btn").on("click",function (e){-->
+<!--            event.preventDefault();-->
+<!--            $('#addModal').modal();-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="post" th:action="@{/students/add}" action="/students/add">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" name="id">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Department:</label>
+                        <input type="text" class="form-control" name="department">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Updated By:</label>
+                        <input type="text" class="form-control" name="updatedBy">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Updated On:</label>
+                        <input type="text" class="form-control" name="updatedOn">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $(".btn").on("click", function (e) {
+            event.preventDefault();
+            $('#addModal').modal();
+        });
+    });
+</script>
+</body>
+</html>
